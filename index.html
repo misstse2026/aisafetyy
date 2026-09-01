@@ -278,9 +278,9 @@
     function showQuestion() {
       const q = currentQuestions[currentIndex];
       
-      document.getElementById('question-number').innerText = 第 ${currentIndex + 1} / 5 題;
-      document.getElementById('score-count').innerText = 得分：${score};
-      document.getElementById('progress-bar').style.width = ${((currentIndex + 1) / 5) * 100}%;
+      document.getElementById('question-number').innerText = `第 ${currentIndex + 1} / 5 題`;
+      document.getElementById('score-count').innerText = `得分：${score}`;
+      document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / 5) * 100}%`;
       
       // 設定圖片來源與對齊位置
       const imgElem = document.getElementById('question-img');
@@ -288,7 +288,7 @@
       imgElem.style.objectFit = 'cover';
       imgElem.style.objectPosition = q.pos;
 
-      document.getElementById('question-tag').innerText = 情境：${q.tag};
+      document.getElementById('question-tag').innerText = `情境：${q.tag}`;
       document.getElementById('question-text').innerText = q.question;
 
       document.getElementById('answer-buttons').classList.remove('hidden');
@@ -318,7 +318,7 @@
       }
 
       expText.innerText = q.explanation;
-      document.getElementById('score-count').innerText = 得分：${score};
+      document.getElementById('score-count').innerText = `得分：${score}`;
     }
 
     function nextQuestion() {
@@ -334,7 +334,7 @@
       document.getElementById('quiz-screen').classList.add('hidden');
       document.getElementById('result-screen').classList.remove('hidden');
 
-      document.getElementById('final-score').innerText = ${score} / 100 分;
+      document.getElementById('final-score').innerText = `${score} / 100 分`;
 
       const msg = document.getElementById('result-message');
       if (score === 100) {
