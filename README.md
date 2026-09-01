@@ -1,1 +1,350 @@
-# aisafetyy
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小學生 AI 安全與私隱大挑戰</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif, system-ui;
+      background-color: #f0fdf4;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+  <div class="bg-white rounded-3xl shadow-xl border-4 border-green-400 p-6 md:p-8 max-w-md w-full text-center relative overflow-hidden">
+    <!-- 頂部裝飾 -->
+    <div class="absolute -top-10 -right-10 w-28 h-28 bg-yellow-300 rounded-full opacity-50 pointer-events-none"></div>
+    <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-green-300 rounded-full opacity-50 pointer-events-none"></div>
+
+    <!-- 主標題 -->
+    <header class="mb-4 relative z-10">
+      <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">網路小達人必學</span>
+      <h1 class="text-2xl md:text-3xl font-black text-green-600 mt-2">🤖 AI 安全與私隱大挑戰</h1>
+    </header>
+
+    <!-- 開始畫面 -->
+    <div id="start-screen" class="space-y-6 relative z-10">
+      <div class="bg-green-50 p-4 rounded-2xl border-2 border-green-200 overflow-hidden">
+        <img src="https://lh3.googleusercontent.com/rd-d/ALs6j_G7XxsqjD8TGPPgndLUbmix_i3G_K1swgcEeTKgs7XZ3Q6wTFk0qI9QghNMI26Kvwh8lpx1iMy4Bj6bKnh0Jl2b-ksOMJQcAsIwPS2wa4uCq8mGgBNEtcGyKCooFypb7_IF-HkrUL9iHOUz6Drcr9kcNEmOQfUIGzHHv6NpZlk0xgG_SAM0UtOrcPJETU5xehkIPT-MEtvioDvs1n6YyWCdDbyC1xlWUdxP5tGFn5oPyfBO9yazPW6ZBvnwU7-lOtk2_kmcDLfT9X4ima9brJY82CUZ5LdR3QHHvBwaDLb-x3csU6C-VVPfC41dxynrN8EIEMGTHDm4LkkJzniJs3IMQaq-eFnUncoCORsyhhTfD6RHa4A2NeVHcXw0NZCjFRg-mlxfPHzI0h96KbzsMNUgx3ZjVvSzq-aoK3_YGvnBWiQBtH4gs2HSpm7O_0_T17TFSlogQVl1J9592KnluzqnH09e-4osuv6W6B5GyxC1IGHiyKXObxkHLIClPUEqU8cNyR0V2j457VsYtKmGnMqzalsosGIxzy3q3yD6rKHmm_BNV-7o1pMA3ocuDD-vmT05UNFe55P5BUMlGWE9KILm2jSYs-5nppQABjFzf1pFdvG51W6YB1gwzsZAWyGg3L0bfydpZrbwOoPE0krx7Cd5s15L-xZZ_Pg3anl7l5pPHIZrtNM_B93OMzoxUPw0rT0vQdhQbXobzeIMw09Mk_SWiw7OWe1UwsIK-md_BA_5w3pZBeHOs19jIjJvWq1dtak6rHVtjdoKvrTdCyzrT0cK-0La77VT_zElxbPQGYZmuWmny-vSH5E3VAjwfjSHwx_P_gq5e6Wf3nroaNIFA766q5n5Ywu9bCsrJPtaiBperLlMeM8CnVZIoyirHhg4sBglTdZQEI0KPffxkiA2VGVbluJTTg6hiuf1qD6YDKYKOPRs3wXEnGRaJ3LyfdL66W9Ib6ILye8PkU1OIAEZQF3wXBMLBmu7BMq2xITXmy9ZPgyQnSw3Lcr1NhSA0wiOGCXLWFBYDAKL3KsYE2fXIvcrLbv3B-So-WeiqxKT1wTE-Yc75IcpzRYlPjvPSyJ4F5k0iZUB-jr1dKV5q_YvcL4BV_Db9tbmVFhyYf1V-XGwJCxU8ZzjkC5tqxm4j-88w7OCHSg=s1600" alt="AI安全情境" class="w-full h-36 object-cover rounded-xl mb-3 shadow">
+        <p class="text-gray-600 text-sm leading-relaxed">
+          系統將從 <span class="font-bold text-green-600">20 道情境題</span> 中隨機抽出 <span class="font-bold text-green-600">5 題</span>，結合專屬情境插圖，快來挑戰吧！
+        </p>
+      </div>
+      <button onclick="startGame()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-950 font-black text-xl py-4 rounded-2xl shadow-lg border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1 transition">
+        🚀 開始挑戰！
+      </button>
+    </div>
+
+    <!-- 答題區域 -->
+    <div id="quiz-screen" class="hidden space-y-4 relative z-10">
+      <div class="flex justify-between items-center text-sm font-bold text-gray-500 mb-1">
+        <span id="question-number">第 1 / 5 題</span>
+        <span id="score-count" class="text-green-600">得分：0</span>
+      </div>
+      <div class="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
+        <div id="progress-bar" class="bg-green-500 h-full w-1/5 transition-all duration-300"></div>
+      </div>
+
+      <!-- 題目插圖與內容區 -->
+      <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 flex flex-col items-center justify-center shadow-inner">
+        <!-- 動態裁切/顯示主題圖片區域 -->
+        <div class="w-full h-44 rounded-xl overflow-hidden mb-3 border border-amber-300 bg-white shadow-sm flex items-center justify-center">
+          <img id="question-img" src="" alt="題目情境圖" class="w-full h-full transition-all duration-300">
+        </div>
+
+        <span id="question-tag" class="text-xs font-bold text-amber-800 bg-amber-200 px-2.5 py-0.5 rounded-md mb-2">
+          <!-- 情境標籤 -->
+        </span>
+        <p id="question-text" class="text-base font-bold text-gray-800 leading-snug">
+          題目加載中...
+        </p>
+      </div>
+
+      <!-- O / X 按鈕 -->
+      <div id="answer-buttons" class="grid grid-cols-2 gap-4">
+        <button onclick="checkAnswer(true)" class="bg-blue-500 hover:bg-blue-600 text-white font-black text-3xl py-3.5 rounded-2xl shadow-lg border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transition flex flex-col items-center justify-center">
+          <span>⭕</span>
+          <span class="text-xs font-bold mt-1">對 (O)</span>
+        </button>
+        <button onclick="checkAnswer(false)" class="bg-red-500 hover:bg-red-600 text-white font-black text-3xl py-3.5 rounded-2xl shadow-lg border-b-4 border-red-700 active:border-b-0 active:translate-y-1 transition flex flex-col items-center justify-center">
+          <span>❌</span>
+          <span class="text-xs font-bold mt-1">錯 (X)</span>
+        </button>
+      </div>
+
+      <!-- 答案解析 -->
+      <div id="feedback" class="hidden p-4 rounded-2xl border-2 text-left space-y-2">
+        <p id="feedback-result" class="font-black text-lg"></p>
+        <p id="feedback-explanation" class="text-sm font-medium text-gray-700 leading-relaxed"></p>
+        <button id="next-btn" onclick="nextQuestion()" class="w-full mt-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 rounded-xl shadow transition">
+          下一題 ➡️
+        </button>
+      </div>
+    </div>
+
+    <!-- 結算畫面 -->
+    <div id="result-screen" class="hidden space-y-6 relative z-10">
+      <div class="py-4">
+        <span class="text-6xl">🏆</span>
+        <h2 class="text-2xl font-black text-gray-800 mt-3">挑戰結束！</h2>
+        <p class="text-gray-600 mt-1">你的最終得分是：</p>
+        <div class="text-4xl font-black text-green-600 my-3" id="final-score">0 / 100</div>
+        <p id="result-message" class="text-base font-bold text-gray-700 bg-yellow-50 p-4 rounded-xl border border-yellow-200 leading-relaxed">
+          評語加載中...
+        </p>
+      </div>
+      <button onclick="startGame()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black text-xl py-4 rounded-2xl shadow-lg border-b-4 border-green-700 active:border-b-0 active:translate-y-1 transition">
+        🔄 再玩一次（隨機換題）
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const mainImageUrl = "https://lh3.googleusercontent.com/rd-d/ALs6j_G7XxsqjD8TGPPgndLUbmix_i3G_K1swgcEeTKgs7XZ3Q6wTFk0qI9QghNMI26Kvwh8lpx1iMy4Bj6bKnh0Jl2b-ksOMJQcAsIwPS2wa4uCq8mGgBNEtcGyKCooFypb7_IF-HkrUL9iHOUz6Drcr9kcNEmOQfUIGzHHv6NpZlk0xgG_SAM0UtOrcPJETU5xehkIPT-MEtvioDvs1n6YyWCdDbyC1xlWUdxP5tGFn5oPyfBO9yazPW6ZBvnwU7-lOtk2_kmcDLfT9X4ima9brJY82CUZ5LdR3QHHvBwaDLb-x3csU6C-VVPfC41dxynrN8EIEMGTHDm4LkkJzniJs3IMQaq-eFnUncoCORsyhhTfD6RHa4A2NeVHcXw0NZCjFRg-mlxfPHzI0h96KbzsMNUgx3ZjVvSzq-aoK3_YGvnBWiQBtH4gs2HSpm7O_0_T17TFSlogQVl1J9592KnluzqnH09e-4osuv6W6B5GyxC1IGHiyKXObxkHLIClPUEqU8cNyR0V2j457VsYtKmGnMqzalsosGIxzy3q3yD6rKHmm_BNV-7o1pMA3ocuDD-vmT05UNFe55P5BUMlGWE9KILm2jSYs-5nppQABjFzf1pFdvG51W6YB1gwzsZAWyGg3L0bfydpZrbwOoPE0krx7Cd5s15L-xZZ_Pg3anl7l5pPHIZrtNM_B93OMzoxUPw0rT0vQdhQbXobzeIMw09Mk_SWiw7OWe1UwsIK-md_BA_5w3pZBeHOs19jIjJvWq1dtak6rHVtjdoKvrTdCyzrT0cK-0La77VT_zElxbPQGYZmuWmny-vSH5E3VAjwfjSHwx_P_gq5e6Wf3nroaNIFA766q5n5Ywu9bCsrJPtaiBperLlMeM8CnVZIoyirHhg4sBglTdZQEI0KPffxkiA2VGVbluJTTg6hiuf1qD6YDKYKOPRs3wXEnGRaJ3LyfdL66W9Ib6ILye8PkU1OIAEZQF3wXBMLBmu7BMq2xITXmy9ZPgyQnSw3Lcr1NhSA0wiOGCXLWFBYDAKL3KsYE2fXIvcrLbv3B-So-WeiqxKT1wTE-Yc75IcpzRYlPjvPSyJ4F5k0iZUB-jr1dKV5q_YvcL4BV_Db9tbmVFhyYf1V-XGwJCxU8ZzjkC5tqxm4j-88w7OCHSg=s1600";
+
+    // 20 道題目資料庫，並對應圖卡位置 (pos)
+    const questionBank = [
+      {
+        tag: "私隱保護",
+        pos: "0% 0%", // 左上 (AI與私隱)
+        question: "在使用 AI 聊天機器人時，我們可以把自己的真實姓名、地址和電話號碼告訴它。",
+        answer: false,
+        explanation: "這是錯的！個人資料（如姓名、地址、電話）屬於個人私隱，千萬不可以隨便輸入到 AI 系統中，以免洩漏出去。"
+      },
+      {
+        tag: "不洩漏資料",
+        pos: "33% 0%", // 中上左 (不洩漏資料)
+        question: "未經家人同意，隨意將家人的照片或私密資料上傳給 AI 處理是安全的行為。",
+        answer: false,
+        explanation: "這是錯的！家人的照片與資料同樣屬於個人私隱，未經同意不可以隨意上傳到網路上或給 AI 分析。"
+      },
+      {
+        tag: "檢查真實性",
+        pos: "66% 0%", // 中上右 (檢查真實性)
+        question: "AI 生成的故事或資料有可能是錯的，所以我們完成作業後還是要自己檢查一下。",
+        answer: true,
+        explanation: "這是對的！AI 有時候會「一本正經地胡說八道」（稱為幻覺現象），所以查到的資料一定要向老師或家長確認。"
+      },
+      {
+        tag: "誠實學習",
+        pos: "100% 0%", // 右上 (不作弊濫用)
+        question: "用 AI 製作出來的圖片或文章，可以直接當作是自己原創的作品交給老師。",
+        answer: false,
+        explanation: "這是錯的！直接把 AI 產生的內容當成自己的作品屬於不誠實的行為，如果使用了 AI 輔助，應該主動說明。"
+      },
+      {
+        tag: "小心假訊息",
+        pos: "0% 100%", // 左下 (小心假訊息)
+        question: "網路上所有看到的精美 AI 圖片或飛天貓咪照片，一定都是現實中真實存在的。",
+        answer: false,
+        explanation: "這是錯的！AI 具備強大的繪圖能力，可以創造出許多逼真但現實中不存在的虛構圖片。"
+      },
+      {
+        tag: "網路禮儀",
+        pos: "33% 100%", // 中下左 (網路禮儀)
+        question: "不論是與現實中的同學互動，還是在網路上使用 AI 聊天，我們都應該保持禮貌。",
+        answer: true,
+        explanation: "這是對的！保持良好的網路禮儀與友善態度，能讓我們的網路使用環境更美好。"
+      },
+      {
+        tag: "尋求協助",
+        pos: "66% 100%", // 中下右 (尋求協助)
+        question: "如果 AI 突然說出令人不舒服、暴力或奇怪的話，我們應該立刻關掉並告訴家長或老師。",
+        answer: true,
+        explanation: "這是對的！遇到不適當的內容時，要及時向信任的大人尋求幫助，並停止與 AI 對話。"
+      },
+      {
+        tag: "帳號安全",
+        pos: "100% 100%", // 右下 (帳號安全)
+        question: "為了方便記憶，我們可以把自己的帳號密碼直接告訴同學或好友。",
+        answer: false,
+        explanation: "這是錯的！密碼屬於高度敏感資料，應該設定複雜的密碼並妥善保管，不能告訴任何朋友。"
+      },
+      {
+        tag: "網路道德",
+        pos: "100% 0%",
+        question: "我們不可以要求 AI 幫我們寫程式去破壞別人的電腦或帳號。",
+        answer: true,
+        explanation: "這是對的！網路安全非常重要，利用 AI 進行任何網路攻擊或破壞都是違法且不道德的。"
+      },
+      {
+        tag: "批判思考",
+        pos: "66% 0%",
+        question: "只要是 AI 講的話，就一定是百分之百正確的標準答案。",
+        answer: false,
+        explanation: "這是錯的！AI 是透過資料學習的，它也會犯錯或給出過時的資訊，我們需要保持批判性思考。"
+      },
+      {
+        tag: "尊重肖像權",
+        pos: "33% 0%",
+        question: "上傳同學的照片給 AI 進行修圖或變臉前，應該先徵得同學的同意。",
+        answer: true,
+        explanation: "這是對的！使用他人的照片涉及肖像權與私隱，一定要先取得對方的同意，尊重他人。"
+      },
+      {
+        tag: "真實社交",
+        pos: "33% 100%",
+        question: "AI 可以完全代替人類朋友，我們不需要在現實生活中和同學互動了。",
+        answer: false,
+        explanation: "這是錯的！AI 只是程式工具，無法取代真實的人際互動與情感交流，現實中的朋友依然非常重要。"
+      },
+      {
+        tag: "財產安全",
+        pos: "100% 100%",
+        question: "不可以將父母的信用卡號碼或密碼輸入到 AI 聊天軟體中。",
+        answer: true,
+        explanation: "這是對的！金錢與帳號密碼非常敏感，絕對不能在未經父母允許下隨意輸入。"
+      },
+      {
+        tag: "辨識假訊息",
+        pos: "0% 100%",
+        question: "如果在網路上看到很像某位名人的影片，它一定是真的，AI 沒辦法做出假的影片。",
+        answer: false,
+        explanation: "這是錯的！現在有 AI 深偽技術（Deepfake），可以做出非常逼真的假影片，我們要學會辨別真偽。"
+      },
+      {
+        tag: "自主思考",
+        pos: "100% 0%",
+        question: "使用 AI 輔助學習時，最重要的是幫助我們「理解」知識，而不是幫我們「抄答案」。",
+        answer: true,
+        explanation: "這是對的！AI 是學習的好幫手，可以用來解惑或提供靈感，但不能取代我們自己的思考。"
+      },
+      {
+        tag: "資料紀錄",
+        pos: "0% 0%",
+        question: "AI 系統不會記錄我們輸入過的內容，所以寫什麼進去都沒關係。",
+        answer: false,
+        explanation: "這是錯的！許多 AI 系統會記錄用戶輸入的對話來訓練模型，因此敏感資訊絕對不能輸入。"
+      },
+      {
+        tag: "智慧財產權",
+        pos: "100% 0%",
+        question: "看到網路上的 AI 生成圖片非常精美，就可以直接拿去當作商品賣給別人賺錢。",
+        answer: false,
+        explanation: "這是錯的！AI 圖片可能涉及版權問題，未經確認授權不能隨意進行商業販售。"
+      },
+      {
+        tag: "帳號安全",
+        pos: "100% 100%",
+        question: "註冊新的 AI 軟體帳號時，應該請家長陪同並協助確認隱私條款。",
+        answer: true,
+        explanation: "這是對的！小學生使用新網路服務時，有家長陪同把關能更好地保護個人帳號安全。"
+      },
+      {
+        tag: "拒絕謠言",
+        pos: "0% 100%",
+        question: "利用 AI 故意製造假新聞或謠言去嚇唬同學，只是一個無傷大雅的小玩笑。",
+        answer: false,
+        explanation: "這是錯的！散播假訊息會造成恐慌和傷害他人，無論是否使用 AI 都不可行。"
+      },
+      {
+        tag: "正確認知",
+        pos: "0% 0%",
+        question: "AI 擁有像人類一樣的感覺和情緒，會真的感到開心或難過。",
+        answer: false,
+        explanation: "這是錯的！AI 只是由程式和演算法構成的電腦系統，並沒有真實的情感與意識。"
+      }
+    ];
+
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function startGame() {
+      currentQuestions = shuffle(questionBank).slice(0, 5);
+      currentIndex = 0;
+      score = 0;
+
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.add('hidden');
+      document.getElementById('quiz-screen').classList.remove('hidden');
+
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = currentQuestions[currentIndex];
+      
+      document.getElementById('question-number').innerText = 第 ${currentIndex + 1} / 5 題;
+      document.getElementById('score-count').innerText = 得分：${score};
+      document.getElementById('progress-bar').style.width = ${((currentIndex + 1) / 5) * 100}%;
+      
+      // 設定圖片來源與對齊位置
+      const imgElem = document.getElementById('question-img');
+      imgElem.src = mainImageUrl;
+      imgElem.style.objectFit = 'cover';
+      imgElem.style.objectPosition = q.pos;
+
+      document.getElementById('question-tag').innerText = 情境：${q.tag};
+      document.getElementById('question-text').innerText = q.question;
+
+      document.getElementById('answer-buttons').classList.remove('hidden');
+      document.getElementById('feedback').classList.add('hidden');
+    }
+
+    function checkAnswer(userAnswer) {
+      const q = currentQuestions[currentIndex];
+      const isCorrect = (userAnswer === q.answer);
+
+      document.getElementById('answer-buttons').classList.add('hidden');
+      const feedbackDiv = document.getElementById('feedback');
+      const resultText = document.getElementById('feedback-result');
+      const expText = document.getElementById('feedback-explanation');
+
+      feedbackDiv.classList.remove('hidden');
+
+      if (isCorrect) {
+        score += 20;
+        resultText.innerText = "🎉 答對了！太棒了！";
+        resultText.className = "font-black text-lg text-green-600";
+        feedbackDiv.className = "p-4 rounded-2xl border-2 text-left space-y-2 bg-green-50 border-green-300";
+      } else {
+        resultText.innerText = "😅 答錯囉！再接再厲！";
+        resultText.className = "font-black text-lg text-red-600";
+        feedbackDiv.className = "p-4 rounded-2xl border-2 text-left space-y-2 bg-red-50 border-red-300";
+      }
+
+      expText.innerText = q.explanation;
+      document.getElementById('score-count').innerText = 得分：${score};
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex < 5) {
+        showQuestion();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+
+      document.getElementById('final-score').innerText = ${score} / 100 分;
+
+      const msg = document.getElementById('result-message');
+      if (score === 100) {
+        msg.innerText = "🌟 太厲害了！你是優秀的「AI 安全小達人」，完全掌握了私隱與安全知識！";
+      } else if (score >= 60) {
+        msg.innerText = "👍 表現得很好！你已經具備基本的安全觀念囉，繼續保持！";
+      } else {
+        msg.innerText = "💪 加油！有些安全小細節要多注意，再玩一次挑戰滿分吧！";
+      }
+    }
+  </script>
+</body>
+</html>
