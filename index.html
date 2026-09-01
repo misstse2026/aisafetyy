@@ -16,30 +16,26 @@
 <body class="min-h-screen flex items-center justify-center p-4">
 
   <div class="bg-white rounded-3xl shadow-xl border-4 border-green-400 p-6 md:p-8 max-w-md w-full text-center relative overflow-hidden">
-    <!-- 頂部裝飾 -->
     <div class="absolute -top-10 -right-10 w-28 h-28 bg-yellow-300 rounded-full opacity-50 pointer-events-none"></div>
     <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-green-300 rounded-full opacity-50 pointer-events-none"></div>
 
-    <!-- 主標題 -->
     <header class="mb-4 relative z-10">
       <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">網路小達人必學</span>
-      <h1 class="text-2xl md:text-3xl font-black text-green-600 mt-2">🤖 AI 安全與私隱大挑戰</h1>
+      <h1 class="text-2xl md:text-3xl font-black text-green-600 mt-2">AI 安全與私隱大挑戰</h1>
     </header>
 
-    <!-- 開始畫面 -->
     <div id="start-screen" class="space-y-6 relative z-10">
-      <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 overflow-hidden text-center">
-        <div class="text-6xl mb-3">🛡️🤖💡</div>
+      <div class="bg-green-50 p-4 rounded-2xl border-2 border-green-200 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" alt="AI安全情境" class="w-full h-36 object-cover rounded-xl mb-3 shadow">
         <p class="text-gray-600 text-sm leading-relaxed">
-          系統將從 <span class="font-bold text-green-600">20 道情境題</span> 中隨機抽出 <span class="font-bold text-green-600">5 題</span>，快來挑戰看看你的 AI 安全指數吧！
+          系統將從 <span class="font-bold text-green-600">20 道情境題</span> 中隨機抽出 <span class="font-bold text-green-600">5 題</span>，結合專屬情境插圖，快來挑戰吧！
         </p>
       </div>
       <button onclick="startGame()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-950 font-black text-xl py-4 rounded-2xl shadow-lg border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1 transition">
-        🚀 開始挑戰！
+        開始挑戰！
       </button>
     </div>
 
-    <!-- 答題區域 -->
     <div id="quiz-screen" class="hidden space-y-4 relative z-10">
       <div class="flex justify-between items-center text-sm font-bold text-gray-500 mb-1">
         <span id="question-number">第 1 / 5 題</span>
@@ -49,47 +45,38 @@
         <div id="progress-bar" class="bg-green-500 h-full w-1/5 transition-all duration-300"></div>
       </div>
 
-      <!-- 題目圖示與內容區 -->
       <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 flex flex-col items-center justify-center shadow-inner">
-        <!-- 主題圖示區域 -->
-        <div id="image-box" class="w-full h-36 rounded-xl overflow-hidden mb-3 border border-amber-300 bg-amber-100/50 shadow-sm flex items-center justify-center">
-          <span id="icon-display" class="text-6xl">🤖</span>
+        <div class="w-full h-44 rounded-xl overflow-hidden mb-3 border border-amber-300 bg-white shadow-sm flex items-center justify-center">
+          <img id="question-img" src="" alt="題目情境圖" class="w-full h-full object-cover transition-all duration-300">
         </div>
 
         <span id="question-tag" class="text-xs font-bold text-amber-800 bg-amber-200 px-2.5 py-0.5 rounded-md mb-2">
-          <!-- 情境標籤 -->
-        </span>
+          </span>
         <p id="question-text" class="text-base font-bold text-gray-800 leading-snug">
           題目加載中...
         </p>
       </div>
 
-      <!-- O / X 按鈕 -->
       <div id="answer-buttons" class="grid grid-cols-2 gap-4">
-        <button onclick="checkAnswer(true)" class="bg-blue-500 hover:bg-blue-600 text-white font-black text-3xl py-3.5 rounded-2xl shadow-lg border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transition flex flex-col items-center justify-center">
-          <span>⭕</span>
-          <span class="text-xs font-bold mt-1">對 (O)</span>
+        <button onclick="checkAnswer(true)" class="bg-blue-500 hover:bg-blue-600 text-white font-black text-2xl py-4 rounded-2xl shadow-lg border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transition flex flex-col items-center justify-center">
+          <span>對 (O)</span>
         </button>
-        <button onclick="checkAnswer(false)" class="bg-red-500 hover:bg-red-600 text-white font-black text-3xl py-3.5 rounded-2xl shadow-lg border-b-4 border-red-700 active:border-b-0 active:translate-y-1 transition flex flex-col items-center justify-center">
-          <span>❌</span>
-          <span class="text-xs font-bold mt-1">錯 (X)</span>
+        <button onclick="checkAnswer(false)" class="bg-red-500 hover:bg-red-600 text-white font-black text-2xl py-4 rounded-2xl shadow-lg border-b-4 border-red-700 active:border-b-0 active:translate-y-1 transition flex flex-col items-center justify-center">
+          <span>錯 (X)</span>
         </button>
       </div>
 
-      <!-- 答案解析 -->
       <div id="feedback" class="hidden p-4 rounded-2xl border-2 text-left space-y-2">
         <p id="feedback-result" class="font-black text-lg"></p>
         <p id="feedback-explanation" class="text-sm font-medium text-gray-700 leading-relaxed"></p>
         <button id="next-btn" onclick="nextQuestion()" class="w-full mt-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 rounded-xl shadow transition">
-          下一題 ➡️
+          下一題
         </button>
       </div>
     </div>
 
-    <!-- 結算畫面 -->
     <div id="result-screen" class="hidden space-y-6 relative z-10">
       <div class="py-4">
-        <span class="text-6xl">🏆</span>
         <h2 class="text-2xl font-black text-gray-800 mt-3">挑戰結束！</h2>
         <p class="text-gray-600 mt-1">你的最終得分是：</p>
         <div class="text-4xl font-black text-green-600 my-3" id="final-score">0 / 100</div>
@@ -98,32 +85,33 @@
         </p>
       </div>
       <button onclick="startGame()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black text-xl py-4 rounded-2xl shadow-lg border-b-4 border-green-700 active:border-b-0 active:translate-y-1 transition">
-        🔄 再玩一次（隨機換題）
+        再玩一次（隨機換題）
       </button>
     </div>
   </div>
 
   <script>
-    const categoryIcons = {
-      "私隱保護": "🔒",
-      "不洩漏資料": "🛡️",
-      "檢查真實性": "🔎",
-      "誠實學習": "✍️",
-      "小心假訊息": "⚠️",
-      "網路禮儀": "🤝",
-      "尋求協助": "🙋‍♂️",
-      "帳號安全": "🔑",
-      "網路道德": "⚖️",
-      "批判思考": "🧠",
-      "尊重肖像權": "📸",
-      "真實社交": "👫",
-      "財產安全": "💳",
-      "辨識假訊息": "🕵️",
-      "自主思考": "💡",
-      "資料紀錄": "💾",
-      "智慧財產權": "🎨",
-      "拒絕謠言": "🚫",
-      "正確認知": "🤖"
+    // 為不同情境主題分類預設高品質線上 Unsplash 圖片
+    const categoryImages = {
+      "私隱保護": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop",
+      "不洩漏資料": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop",
+      "檢查真實性": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
+      "誠實學習": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+      "小心假訊息": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop",
+      "網路禮儀": "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop",
+      "尋求協助": "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=800&auto=format&fit=crop",
+      "帳號安全": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=800&auto=format&fit=crop",
+      "網路道德": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop",
+      "批判思考": "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?q=80&w=800&auto=format&fit=crop",
+      "尊重肖像權": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop",
+      "真實社交": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
+      "財產安全": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop",
+      "辨識假訊息": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop",
+      "自主思考": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop",
+      "資料紀錄": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=800&auto=format&fit=crop",
+      "智慧財產權": "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
+      "拒絕謠言": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop",
+      "正確認知": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop"
     };
 
     const questionBank = [
@@ -281,9 +269,9 @@
       document.getElementById('score-count').innerText = `得分：${score}`;
       document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / 5) * 100}%`;
       
-      // 設定動態 Emoji
-      const icon = categoryIcons[q.tag] || "🤖";
-      document.getElementById('icon-display').innerText = icon;
+      // 動態更新為對應主題的線上網頁圖片
+      const imgElem = document.getElementById('question-img');
+      imgElem.src = categoryImages[q.tag] || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop";
 
       document.getElementById('question-tag').innerText = `情境：${q.tag}`;
       document.getElementById('question-text').innerText = q.question;
@@ -305,11 +293,11 @@
 
       if (isCorrect) {
         score += 20;
-        resultText.innerText = "🎉 答對了！太棒了！";
+        resultText.innerText = "答對了！太棒了！";
         resultText.className = "font-black text-lg text-green-600";
         feedbackDiv.className = "p-4 rounded-2xl border-2 text-left space-y-2 bg-green-50 border-green-300";
       } else {
-        resultText.innerText = "😅 答錯囉！再接再厲！";
+        resultText.innerText = "答錯囉！再接再厲！";
         resultText.className = "font-black text-lg text-red-600";
         feedbackDiv.className = "p-4 rounded-2xl border-2 text-left space-y-2 bg-red-50 border-red-300";
       }
@@ -317,12 +305,11 @@
       expText.innerText = q.explanation;
       document.getElementById('score-count').innerText = `得分：${score}`;
 
-      // 第 5 題時提示前往結算
       const nextBtn = document.getElementById('next-btn');
       if (currentIndex === 4) {
-        nextBtn.innerText = "看結算成績 🏆";
+        nextBtn.innerText = "看結算成績";
       } else {
-        nextBtn.innerText = "下一題 ➡️";
+        nextBtn.innerText = "下一題";
       }
     }
 
@@ -343,11 +330,11 @@
 
       const msg = document.getElementById('result-message');
       if (score === 100) {
-        msg.innerText = "🌟 太厲害了！你是優秀的「AI 安全小達人」，完全掌握了私隱與安全知識！";
+        msg.innerText = "太厲害了！你是優秀的「AI 安全小達人」，完全掌握了私隱與安全知識！";
       } else if (score >= 60) {
-        msg.innerText = "👍 表現得很好！你已經具備基本的安全觀念囉，繼續保持！";
+        msg.innerText = "表現得很好！你已經具備基本的安全觀念囉，繼續保持！";
       } else {
-        msg.innerText = "💪 加油！有些安全小細節要多注意，再玩一次挑戰滿分吧！";
+        msg.innerText = "加油！有些安全小細節要多注意，再玩一次挑戰滿分吧！";
       }
     }
   </script>
