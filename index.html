@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>幼稚園 AI 安全與私隱小勇士</title>
+  <title>幼稚園 AI 安全與私隱小勇士 | Kindergarten AI Safety & Privacy Little Hero</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,35 +35,37 @@
     <!-- 主標題區 -->
     <header class="mb-5 relative z-10">
       <span class="inline-block bg-amber-100 text-amber-800 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full border border-amber-300 mb-2">
-        🧸 幼兒網絡安全大挑戰
+        🧸 幼兒網絡安全大挑戰 Kids Cyber Safety Challenge
       </span>
       <h1 class="text-2xl md:text-3xl font-black text-amber-600 tracking-tight">
         🤖 AI 安全與私隱小勇士
       </h1>
+      <p class="text-xs font-bold text-amber-700 tracking-wider">AI Safety & Privacy Little Hero</p>
     </header>
 
     <!-- 遊戲開始畫面 -->
     <div id="start-screen" class="space-y-6 relative z-10">
       <div class="text-7xl my-2 bounce-gentle">🐥</div>
       <div class="bg-amber-50 p-5 rounded-2xl border-2 border-amber-200 text-gray-700 text-base md:text-lg leading-relaxed">
-        <p class="font-bold text-amber-900 text-xl mb-1">小朋友，你好呀！</p>
-        <p>跟平板電腦或 AI 機器人玩耍時，你知道怎樣保護自己嗎？</p>
-        <p class="text-xs md:text-sm text-amber-700 mt-2 font-semibold bg-white p-2 rounded-xl border border-amber-200 inline-block">
-          ✨ 每次隨機玩 5 道簡單有趣的小題目！
+        <p class="font-bold text-amber-900 text-xl mb-1">小朋友，你好呀！ Hello Kids!</p>
+        <p class="text-sm md:text-base">跟平板電腦或 AI 機器人玩耍時，你知道怎樣保護自己嗎？</p>
+        <p class="text-xs text-gray-500 font-semibold mt-1">Do you know how to protect yourself when playing with tablets or AI robots?</p>
+        <p class="text-xs md:text-sm text-amber-700 mt-3 font-semibold bg-white p-2 rounded-xl border border-amber-200 inline-block">
+          ✨ 每次隨機 5 題！ 5 Random Quiz Questions!
         </p>
       </div>
       
       <button onclick="startGame()" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 font-black text-2xl py-4 rounded-2xl shadow-md border-b-4 border-amber-600 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2">
-        <span>🎮</span> 開始遊戲！
+        <span>🎮</span> 開始遊戲！ Start Game!
       </button>
     </div>
 
     <!-- 答題區域 -->
     <div id="quiz-screen" class="hidden space-y-4 relative z-10">
       <!-- 進度條與計分器 -->
-      <div class="flex justify-between items-center text-sm md:text-base font-bold text-gray-600">
-        <span id="question-number" class="bg-amber-100 text-amber-900 px-3.5 py-1 rounded-full">第 1 / 5 題</span>
-        <span id="score-count" class="text-amber-700 bg-amber-50 px-3.5 py-1 rounded-full border border-amber-200">⭐ 得分：0</span>
+      <div class="flex justify-between items-center text-xs md:text-sm font-bold text-gray-600">
+        <span id="question-number" class="bg-amber-100 text-amber-900 px-3.5 py-1 rounded-full">第 1 / 5 題 (Q1 / 5)</span>
+        <span id="score-count" class="text-amber-700 bg-amber-50 px-3.5 py-1 rounded-full border border-amber-200">⭐ 得分 Score: 0</span>
       </div>
       
       <div class="w-full bg-gray-200 h-3.5 rounded-full overflow-hidden p-0.5 border border-gray-300">
@@ -78,32 +80,38 @@
         </div>
 
         <span id="question-tag" class="text-xs font-bold text-amber-800 bg-amber-200 px-3 py-1 rounded-full mb-2">
-          標籤加載中...
+          情境 Topic
         </span>
 
-        <p id="question-text" class="text-lg md:text-xl font-bold text-gray-800 leading-snug">
+        <p id="question-text" class="text-base md:text-lg font-bold text-gray-800 leading-snug">
           題目加載中...
+        </p>
+        <p id="question-text-en" class="text-xs text-gray-600 font-semibold mt-1 italic">
+          Loading question...
         </p>
       </div>
 
       <!-- O / X 大按鈕組（專為幼兒觸控設計） -->
       <div id="answer-buttons" class="grid grid-cols-2 gap-4">
-        <button onclick="checkAnswer(true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-black py-5 rounded-2xl shadow-md border-b-4 border-emerald-700 active:border-b-0 active:translate-y-1 transition-all flex flex-col items-center justify-center gap-1">
-          <span class="text-5xl">⭕</span>
-          <span class="text-lg font-black mt-1">對 (對的)</span>
+        <button onclick="checkAnswer(true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-black py-4 rounded-2xl shadow-md border-b-4 border-emerald-700 active:border-b-0 active:translate-y-1 transition-all flex flex-col items-center justify-center gap-0.5">
+          <span class="text-4xl">⭕</span>
+          <span class="text-base font-black mt-1">對 (Yes)</span>
         </button>
-        <button onclick="checkAnswer(false)" class="bg-rose-500 hover:bg-rose-600 text-white font-black py-5 rounded-2xl shadow-md border-b-4 border-rose-700 active:border-b-0 active:translate-y-1 transition-all flex flex-col items-center justify-center gap-1">
-          <span class="text-5xl">❌</span>
-          <span class="text-lg font-black mt-1">錯 (不對)</span>
+        <button onclick="checkAnswer(false)" class="bg-rose-500 hover:bg-rose-600 text-white font-black py-4 rounded-2xl shadow-md border-b-4 border-rose-700 active:border-b-0 active:translate-y-1 transition-all flex flex-col items-center justify-center gap-0.5">
+          <span class="text-4xl">❌</span>
+          <span class="text-base font-black mt-1">錯 (No)</span>
         </button>
       </div>
 
       <!-- 解答與回饋區 -->
       <div id="feedback" class="hidden p-4 rounded-2xl border-2 text-left space-y-2">
-        <p id="feedback-result" class="font-black text-xl flex items-center gap-2"></p>
-        <p id="feedback-explanation" class="text-sm md:text-base font-bold text-gray-700 leading-relaxed bg-white/80 p-3 rounded-xl border"></p>
-        <button id="next-btn" onclick="nextQuestion()" class="w-full mt-2 bg-amber-500 hover:bg-amber-600 text-white font-black text-xl py-3 rounded-xl shadow-md transition-all active:scale-[0.98]">
-          下一題 ➡️
+        <p id="feedback-result" class="font-black text-lg flex items-center gap-2"></p>
+        <div class="bg-white/80 p-3 rounded-xl border space-y-1">
+          <p id="feedback-explanation" class="text-sm font-bold text-gray-700 leading-relaxed"></p>
+          <p id="feedback-explanation-en" class="text-xs font-semibold text-gray-500 italic"></p>
+        </div>
+        <button id="next-btn" onclick="nextQuestion()" class="w-full mt-2 bg-amber-500 hover:bg-amber-600 text-white font-black text-lg py-3 rounded-xl shadow-md transition-all active:scale-[0.98]">
+          下一題 Next Question ➡️
         </button>
       </div>
     </div>
@@ -113,180 +121,222 @@
       <div class="py-2">
         <div id="result-icon" class="text-7xl mb-2">🏆</div>
         <h2 class="text-2xl md:text-3xl font-black text-gray-800">大挑戰完成！</h2>
-        <p class="text-gray-500 text-base mt-1">你的成績是：</p>
-        <div class="text-5xl font-black text-amber-600 my-3" id="final-score">0 / 100</div>
-        <div id="result-message" class="text-base md:text-lg font-bold text-gray-800 bg-amber-50 p-4 rounded-2xl border-2 border-amber-200 text-center leading-relaxed">
-          評語加載中...
+        <p class="text-xs font-bold text-gray-500">Challenge Completed!</p>
+        <p class="text-gray-500 text-sm mt-2">你的成績是 Your Score:</p>
+        <div class="text-5xl font-black text-amber-600 my-2" id="final-score">0 / 100</div>
+        <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200 text-center leading-relaxed">
+          <p id="result-message" class="text-base font-bold text-gray-800"></p>
+          <p id="result-message-en" class="text-xs text-gray-600 font-semibold mt-1 italic"></p>
         </div>
       </div>
-      <button onclick="startGame()" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 font-black text-2xl py-4 rounded-2xl shadow-md border-b-4 border-amber-600 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2">
-        <span>🔄</span> 再玩一次（換新題目）
+      <button onclick="startGame()" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 font-black text-xl py-4 rounded-2xl shadow-md border-b-4 border-amber-600 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2">
+        <span>🔄</span> 再玩一次 Play Again
       </button>
     </div>
   </div>
 
   <script>
-    // 專為幼稚園幼兒設計的 20 道「AI 安全與私隱」情境題目資料庫
+    // 專為幼稚園幼兒設計的 20 道雙語「AI 安全與私隱」情境題目資料庫
     const questionBank = [
       {
-        tag: "保護名字地址",
+        tag: "保護名字地址 | Name & Address",
         emoji: "👧🤫",
         pos: "0% 0%",
         question: "聽說 AI 機器人很聰明，我們可以把自己的真名和家裡地址告訴它嗎？",
+        questionEn: "AI is smart! Can we tell it our real name and home address?",
         answer: false,
-        explanation: "不可以喔！名字和屋企地址是重要的秘密，不能告訴機器人，要保護好個人私隱。"
+        explanation: "不可以喔！名字和屋企地址是重要的秘密，不能告訴機器人，要保護好個人私隱。",
+        explanationEn: "No! Your name and home address are secrets. Protect your privacy."
       },
       {
-        tag: "尋求大人幫忙",
+        tag: "尋求大人幫忙 | Ask Adults",
         emoji: "🤖🚨",
         pos: "66% 100%",
         question: "如果 AI 機器人突然說出可怕或怪怪的話，要立刻告訴爸爸媽媽或老師。",
         answer: true,
-        explanation: "答對了！聽到奇怪或不舒服的話，一定要快點找爸爸媽媽或老師幫忙喔！"
+        questionEn: "If AI says scary or strange things, tell parents or teachers right away.",
+        explanation: "答對了！聽到奇怪或不舒服的話，一定要快點找爸爸媽媽或老師幫忙喔！",
+        explanationEn: "Correct! Always ask parents or teachers for help if something feels wrong."
       },
       {
-        tag: "尊重朋友照片",
+        tag: "尊重朋友照片 | Photos Privacy",
         emoji: "📷🤝",
         pos: "33% 0%",
         question: "想把好朋友的照片傳給 AI 變成小卡通，要先問過好朋友同意才可以。",
+        questionEn: "Ask your friend for permission before sending their photo to AI.",
         answer: true,
-        explanation: "真棒！別人的照片是私隱，一定要先有禮貌地問過對方同意才可以拍照或傳送喔。"
+        explanation: "真棒！別人的照片是私隱，一定要先有禮貌地問過對方同意才可以拍照或傳送喔。",
+        explanationEn: "Great! Other people's photos are private. Always ask for permission first."
       },
       {
-        tag: "家裡門牌秘密",
+        tag: "家裡門牌秘密 | Home Secrets",
         emoji: "🏡🔒",
         pos: "33% 0%",
         question: "爸爸媽媽的電話號碼和家裡門牌，可以隨便輸入到平板電腦裡的 AI 遊戲嗎？",
+        questionEn: "Can we type parents' phone numbers or home address into AI games?",
         answer: false,
-        explanation: "不可以喔！爸爸媽媽的電話和門牌都是秘密，不可以隨便輸入進去。"
+        explanation: "不可以喔！爸爸媽媽的電話和門牌都是秘密，不可以隨便輸入進去。",
+        explanationEn: "No! Phone numbers and addresses are secret information."
       },
       {
-        tag: "認識機器人",
+        tag: "認識機器人 | Know About AI",
         emoji: "🎨🤖",
         pos: "0% 0%",
         question: "AI 畫出來的畫畫雖然很漂亮，但它只是一部電腦，不會真的有喜怒哀樂。",
+        questionEn: "AI can draw pictures, but it is just a computer and has no real feelings.",
         answer: true,
-        explanation: "答對了！AI 只是電腦程式，沒有真正的感情，不會真的高興或傷心喔。"
+        explanation: "答對了！AI 只是電腦程式，沒有真正的感情，不會真的高興或傷心喔。",
+        explanationEn: "Correct! AI is a program and doesn't have real feelings."
       },
       {
-        tag: "機器不是魔法",
+        tag: "機器不是魔法 | AI Isn't Magic",
         emoji: "🍟❌",
         pos: "66% 0%",
         question: "只要跟 AI 說「我想吃薯條」，AI 機器人就會立刻憑空變出一包真的薯條出來。",
+        questionEn: "If you tell AI 'I want fries', will it magically make real fries appear?",
         answer: false,
-        explanation: "不會喔！AI 不是魔法師，它只會回答文字或圖畫，不能憑空變出真的食物。"
+        explanation: "不會喔！AI 不是魔法師，它只會回答文字或圖畫，不能憑空變出真的食物。",
+        explanationEn: "No! AI is not magic. It cannot make real food appear."
       },
       {
-        tag: "下載安全",
+        tag: "下載安全 | Safe Download",
         emoji: "📱👨‍👩‍👧",
         pos: "100% 100%",
         question: "想要下載新的 AI 遊戲或 App 時，應該先請爸爸媽媽幫忙看一看。",
+        questionEn: "Ask parents to check before downloading new AI games or apps.",
         answer: true,
-        explanation: "答對了！幼兒下載新軟體前，一定要讓爸爸媽媽檢查是否安全喔。"
+        explanation: "答對了！幼兒下載新軟體前，一定要讓爸爸媽媽檢查是否安全喔。",
+        explanationEn: "Correct! Always let parents check if an app is safe first."
       },
       {
-        tag: "向老師求證",
+        tag: "向老師求證 | Verify Info",
         emoji: "🗣️📖",
         pos: "66% 0%",
         question: "AI 講的故事一定全部都是真的，我們完全不需要問老師或爸爸媽媽。",
+        questionEn: "AI stories are always 100% true, so we don't need to ask teachers.",
         answer: false,
-        explanation: "不對喔！AI 有時候也會講錯故事或給錯答案，還是要向爸爸媽媽或老師確認喔。"
+        explanation: "不對喔！AI 有時候也會講錯故事或給錯答案，還是要向爸爸媽媽或老師確認喔。",
+        explanationEn: "Incorrect! AI can make mistakes. Always check with adults."
       },
       {
-        tag: "守護生日密碼",
+        tag: "守護生日密碼 | Protect Passwords",
         emoji: "🤐🔑",
         pos: "100% 100%",
         question: "自己的生日和家裡密碼是秘密，不能當成遊戲名字告訴 AI 聊天機器人。",
+        questionEn: "Your birthday and passwords are secrets. Never share them with AI.",
         answer: true,
-        explanation: "非常棒！生日和密碼都是很重要的個人私隱，千萬不能告訴別人或輸入進去。"
+        explanation: "非常棒！生日和密碼都是很重要的個人私隱，千萬不能告訴別人或輸入進去。",
+        explanationEn: "Awesome! Birthdays and passwords are private information."
       },
       {
-        tag: "金錢秘密",
+        tag: "金錢秘密 | Money Privacy",
         emoji: "💳🚫",
         pos: "100% 100%",
         question: "爸爸媽媽的信用卡和錢包密碼，可以在玩 AI 遊戲時輸入進去買玩具嗎？",
+        questionEn: "Can we use parents' credit cards to buy toys in AI games?",
         answer: false,
-        explanation: "不可以喔！信用卡和密碼是非常敏感的金錢秘密，絕對不可以隨便輸入！"
+        explanation: "不可以喔！信用卡和密碼是非常敏感的金錢秘密，絕對不可以隨便輸入！",
+        explanationEn: "No! Credit cards and financial info are top secrets."
       },
       {
-        tag: "真實的朋友",
+        tag: "真實的朋友 | Real Friends",
         emoji: "🧸👫",
         pos: "33% 100%",
         question: "AI 機器人可以陪我們唱歌講故事，但它不能取代我們真實的好朋友。",
+        questionEn: "AI can sing and tell stories, but it cannot replace real friends.",
         answer: true,
-        explanation: "答對了！AI 只是玩具和工具，學校裡的同學和家人才是真正關心我們的好朋友！"
+        explanation: "答對了！AI 只是玩具和工具，學校里的同學和家人才是真正關心我們的好朋友！",
+        explanationEn: "Correct! Family and classmates are your real friends."
       },
       {
-        tag: "假影片假照片",
+        tag: "假影片假照片 | Fake Media",
         emoji: "👻🎬",
         pos: "0% 100%",
         question: "網路上看到 AI 做出的會說話的怪獸影片，一定是真實存在的怪獸。",
+        questionEn: "Talking monster videos made by AI are real live monsters.",
         answer: false,
-        explanation: "不對喔！AI 可以做出假的影片和圖片，看到嚇人的影片不要害怕，那是假的喔！"
+        explanation: "不對喔！AI 可以做出假的影片和圖片，看到嚇人的影片不要害怕，那是假的喔！",
+        explanationEn: "Incorrect! AI can create fake videos. Don't be scared!"
       },
       {
-        tag: "聽從老師指示",
+        tag: "聽從老師指示 | Follow Rules",
         emoji: "🏫👩‍🏫",
         pos: "33% 0%",
         question: "在幼稚園想用平板玩 AI 遊戲時，要先聽老師的指示和規定。",
+        questionEn: "Always follow the teacher's rules when using tablets at school.",
         answer: true,
-        explanation: "真棒！在學校使用電子產品和 AI 工具，一定要聽從老師的安排。"
+        explanation: "真棒！在學校使用電子產品和 AI 工具，一定要聽從老師的安排。",
+        explanationEn: "Great! Always follow school rules for device use."
       },
       {
-        tag: "身體私隱 protection",
+        tag: "身體私隱 | Body Privacy",
         emoji: "🛡️❌",
         pos: "0% 0%",
         question: "把自己的身體私密部位拍照傳給 AI 機器人看，這是安全的行為嗎？",
+        questionEn: "Is it safe to send photos of private body parts to AI?",
         answer: false,
-        explanation: "絕對不可以！我們的身體私密部位是非常重要的私隱，絕對不能拍照或傳給任何人。"
+        explanation: "絕對不可以！我們的身體私密部位是非常重要的私隱，絕對不能拍照或傳給任何人。",
+        explanationEn: "Never! Private body parts must never be photographed or sent."
       },
       {
-        tag: "學習小幫手",
+        tag: "學習小幫手 | Learning Helper",
         emoji: "📚✨",
         pos: "66% 0%",
         question: "用 AI 聽故事和學英文時，它可以成為我們學習的好幫手。",
+        questionEn: "AI can be a good helper when learning English and listening to stories.",
         answer: true,
-        explanation: "答對了！只要在大人陪同下正確使用，AI 是個很棒的學習小幫手。"
+        explanation: "答對了！只要在大人陪同下正確使用，AI 是個很棒的學習小幫手。",
+        explanationEn: "Correct! With adult supervision, AI is a helpful learning tool."
       },
       {
-        tag: "愛護電子產品",
+        tag: "愛護電子產品 | Care Devices",
         emoji: "😡💻",
         pos: "100% 0%",
         question: "如果 AI 遊戲一直輸，我們可以氣得把平板電腦摔在地上。",
+        questionEn: "If we lose an AI game, can we throw the tablet on the floor?",
         answer: false,
-        explanation: "不可以喔！我們要愛惜物品，遇到不高興的事要吸一口氣，或是請大人幫幫忙。"
+        explanation: "不可以喔！我們要愛惜物品，遇到不高興的事要吸一口氣，或是請大人幫幫忙。",
+        explanationEn: "No! Take care of devices and calm down if you feel upset."
       },
       {
-        tag: "友善互助",
+        tag: "友善互助 | Help Friends",
         emoji: "🤝❤️",
         pos: "66% 100%",
         question: "看到同學不知道怎麼關掉怪怪的 AI 視窗，我們可以幫他找老師幫忙。",
+        questionEn: "Help classmates find a teacher if they see weird windows in AI games.",
         answer: true,
-        explanation: "太有愛心了！互相幫忙、找老師處理，是優秀小勇士的表現！"
+        explanation: "太有愛心了！互相幫忙、找老師處理，是優秀小勇士的表現！",
+        explanationEn: "So caring! Helping others and telling teachers makes you a hero!"
       },
       {
-        tag: "眼睛適當休息",
+        tag: "眼睛適當休息 | Eye Rest",
         emoji: "👁️💤",
         pos: "33% 100%",
         question: "AI 機器人不需要休息和充電，可以陪我們玩一整天不睡覺。",
+        questionEn: "We can play with AI all day long without resting our eyes.",
         answer: false,
-        explanation: "不對喔！機器需要充電休息，我們的小眼睛和身體也需要適當休息、不能玩太久喔！"
+        explanation: "不對喔！機器需要充電休息，我們的小眼睛和身體也需要適當休息、不能玩太久喔！",
+        explanationEn: "No! Both machines and our eyes need rest!"
       },
       {
-        tag: "公共場所禮儀",
+        tag: "公共場所禮儀 | Manners",
         emoji: "🔊🤫",
         pos: "33% 100%",
         question: "在公共場所玩 AI 語音遊戲時，要把聲音關小一點，才是有禮貌的好孩子。",
+        questionEn: "Lower the volume in public places when playing voice AI games.",
         answer: true,
-        explanation: "答對了！保持適當音量不影響別人，是有禮貌的好孩子。"
+        explanation: "答對了！保持適當音量不影響別人，是有禮貌的好孩子。",
+        explanationEn: "Correct! Keeping volume low shows good manners."
       },
       {
-        tag: "安全小勇士",
+        tag: "安全小勇士 | Safety Hero",
         emoji: "🛡️🌟",
         pos: "100% 100%",
         question: "記住「不講秘密、不看怪怪內容、有問題找大人」，就能安全玩 AI 囉！",
+        questionEn: "Remember 'No secrets, no weird stuff, ask adults' to play safe with AI!",
         answer: true,
-        explanation: "太棒了！只要記住這三大原則，你就是最厲害的 AI 安全小勇士！"
+        explanation: "太棒了！只要記住這三大原則，你就是最厲害的 AI 安全小勇士！",
+        explanationEn: "Awesome! Follow these 3 rules to be an AI Safety Hero!"
       }
     ];
 
@@ -323,11 +373,11 @@
     function showQuestion() {
       const q = currentQuestions[currentIndex];
       
-      document.getElementById('question-number').innerText = `第 ${currentIndex + 1} / 5 題`;
-      document.getElementById('score-count').innerText = `⭐ 得分：${score}`;
+      document.getElementById('question-number').innerText = `第 ${currentIndex + 1} / 5 題 (Q${currentIndex + 1}/5)`;
+      document.getElementById('score-count').innerText = `⭐ 得分 Score: ${score}`;
       document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / 5) * 100}%`;
       
-      // 更新插圖媒體：嘗試載入切片圖片，若載入不順則自動顯示視覺 Emoji
+      // 更新插圖媒體
       const mediaBox = document.getElementById('question-media');
       mediaBox.innerHTML = `
         <img src="${mainImageUrl}" alt="情境圖" 
@@ -335,8 +385,9 @@
              onerror="this.onerror=null; this.parentNode.innerHTML='<span>${q.emoji}</span>';">
       `;
 
-      document.getElementById('question-tag').innerText = `情境：${q.tag}`;
+      document.getElementById('question-tag').innerText = q.tag;
       document.getElementById('question-text').innerText = q.question;
+      document.getElementById('question-text-en').innerText = q.questionEn;
 
       document.getElementById('answer-buttons').classList.remove('hidden');
       document.getElementById('feedback').classList.add('hidden');
@@ -351,22 +402,24 @@
       const feedbackDiv = document.getElementById('feedback');
       const resultText = document.getElementById('feedback-result');
       const expText = document.getElementById('feedback-explanation');
+      const expTextEn = document.getElementById('feedback-explanation-en');
 
       feedbackDiv.classList.remove('hidden');
 
       if (isCorrect) {
         score += 20;
-        resultText.innerHTML = `<span>🎉</span><span>答對囉！你太棒了！</span>`;
-        resultText.className = "font-black text-xl text-emerald-600 flex items-center gap-1";
+        resultText.innerHTML = `<span>🎉</span><span>答對囉！ (Correct!)</span>`;
+        resultText.className = "font-black text-lg text-emerald-600 flex items-center gap-1";
         feedbackDiv.className = "p-4 rounded-2xl border-2 text-left space-y-2 bg-emerald-50 border-emerald-300";
       } else {
-        resultText.innerHTML = `<span>💡</span><span>再想一想喔！</span>`;
-        resultText.className = "font-black text-xl text-rose-600 flex items-center gap-1";
+        resultText.innerHTML = `<span>💡</span><span>再想一想喔！ (Try Again!)</span>`;
+        resultText.className = "font-black text-lg text-rose-600 flex items-center gap-1";
         feedbackDiv.className = "p-4 rounded-2xl border-2 text-left space-y-2 bg-rose-50 border-rose-300";
       }
 
       expText.innerText = q.explanation;
-      document.getElementById('score-count').innerText = `⭐ 得分：${score}`;
+      expTextEn.innerText = q.explanationEn;
+      document.getElementById('score-count').innerText = `⭐ 得分 Score: ${score}`;
     }
 
     // 下一題
@@ -387,17 +440,21 @@
       document.getElementById('final-score').innerText = `${score} / 100`;
 
       const msg = document.getElementById('result-message');
+      const msgEn = document.getElementById('result-message-en');
       const icon = document.getElementById('result-icon');
 
       if (score === 100) {
         icon.innerText = "🏆";
         msg.innerText = "🌟 讚啦！你是滿分的「AI 安全小勇士」！知道怎樣好好保護自己，超級棒！";
+        msgEn.innerText = "Awesome! Perfect score! You are a true AI Safety Hero!";
       } else if (score >= 60) {
         icon.innerText = "👏";
         msg.innerText = "👍 表現得很好喔！你已經知道很多安全小知識了，再玩一次挑戰滿分吧！";
+        msgEn.innerText = "Great job! You know a lot about safety. Play again for a full score!";
       } else {
         icon.innerText = "🐥";
         msg.innerText = "💪 不要緊！跟爸爸媽媽或老師一起再試一次，你一定會越來越棒的！";
+        msgEn.innerText = "Good try! Practice with parents or teachers and try again!";
       }
     }
   </script>
